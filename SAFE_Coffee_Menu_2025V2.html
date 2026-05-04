@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAFE Coffee — 2025 V2 Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+TC:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A14;
+    --green: #3A5A40;
+    --green-light: #6B8F6E;
+    --green-pale: #C8D8C4;
+    --gold: #B8922A;
+    --gold-light: #D4B05A;
+    --red: #C45C3A;
+    --border: rgba(58,90,64,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'Noto Serif TC', serif;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 50px 80px;
+    position: relative;
+  }
+
+  /* Border frame */
+  .page::before {
+    content: '';
+    position: fixed;
+    top: 16px; left: 16px; right: 16px; bottom: 16px;
+    border: 1.5px solid var(--green-pale);
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .menu-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .menu-title span {
+    color: var(--green);
+  }
+
+  .menu-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--green-light);
+    margin-top: 12px;
+  }
+
+  .header-deco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .header-deco-line {
+    width: 80px;
+    height: 1px;
+    background: var(--green-pale);
+  }
+
+  .header-deco-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* Price legend */
+  .price-legend {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding: 12px 20px;
+    background: var(--green);
+    border-radius: 4px;
+  }
+
+  .price-legend-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--cream);
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .price-legend-item::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--gold-light);
+  }
+
+  /* Section header */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .section-flag {
+    font-size: 22px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--green);
+    letter-spacing: 0.05em;
+  }
+
+  .section-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--green-light);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Bean items */
+  .bean-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 48px;
+  }
+
+  .bean-item {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 16px;
+    align-items: start;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .bean-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  .bean-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    padding-top: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  .bean-info { flex: 1; }
+
+  .bean-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--dark);
+    line-height: 1.4;
+    margin-bottom: 5px;
+  }
+
+  .bean-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 7px;
+    flex-wrap: wrap;
+  }
+
+  .bean-origin {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .bean-process {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: white;
+    background: var(--green-light);
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .bean-process.anaerobic {
+    background: var(--red);
+  }
+
+  .bean-process.washed {
+    background: var(--green);
+  }
+
+  .bean-process.yeast {
+    background: var(--gold);
+  }
+
+  .bean-flavor {
+    font-size: 12.5px;
+    color: #555;
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  .bean-flavor-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .flavor-tag {
+    font-size: 11px;
+    color: var(--green);
+    border: 1px solid var(--green-pale);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 300;
+  }
+
+  .bean-price {
+    text-align: right;
+    min-width: 100px;
+    padding-top: 2px;
+  }
+
+  .price-half {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--red);
+    display: block;
+    line-height: 1;
+  }
+
+  .price-hangtag {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--green-light);
+    display: block;
+    margin-top: 4px;
+  }
+
+  .price-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: #aaa;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* Divider between sections */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--green-pale), transparent);
+    margin: 40px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--green-light);
+    letter-spacing: 0.15em;
+    line-height: 1.8;
+  }
+
+  @media print {
+    .page::before { display: none; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="brand-name">SAFE Coffee</div>
+    <div class="menu-title">2025 <span>V2</span><br>Coffee Menu</div>
+    <div class="menu-subtitle">精選單品咖啡豆 · Single Origin Selection</div>
+    <div class="header-deco">
+      <div class="header-deco-line"></div>
+      <div class="header-deco-dot"></div>
+      <div class="header-deco-line"></div>
+    </div>
+  </div>
+
+  <!-- Price Legend -->
+  <div class="price-legend">
+    <div class="price-legend-item">熟豆 半磅 (227g)</div>
+    <div class="price-legend-item">耳掛包 8包入</div>
+  </div>
+
+  <!-- Section 1: Ethiopia Geisha / High-end -->
+  <div class="section-header">
+    <span class="section-flag">🇪🇹</span>
+    <div>
+      <div class="section-title">衣索比亞產區 — 藝妓 & 精品系列</div>
+      <div class="section-subtitle">Ethiopia · Geisha &amp; Premium</div>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="bean-list">
+    <div class="bean-item">
+      <div class="bean-number">01</div>
+      <div class="bean-info">
+        <div class="bean-name">衣索比亞 谷吉 蔻薩村 格蕾娜 藝妓 G1</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Ethiopia · Guji</span>
+          <span class="bean-process">日曬</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">葡萄</span>
+          <span class="flavor-tag">檸檬</span>
+          <span class="flavor-tag">百香果</span>
+          <span class="flavor-tag">蜜柑</span>
+          <span class="flavor-tag">香瓜</span>
+          <span class="flavor-tag">熱帶水果</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$560</span>
+        <span class="price-hangtag">$390</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+
+    <div class="bean-item">
+      <div class="bean-number">02</div>
+      <div class="bean-info">
+        <div class="bean-name">瑪莉藝妓 甜美日曬 海運微批次 G1</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Ethiopia</span>
+          <span class="bean-process">日曬</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">佛手柑</span>
+          <span class="flavor-tag">蜜香</span>
+          <span class="flavor-tag">楓糖</span>
+          <span class="flavor-tag">芒果</span>
+          <span class="flavor-tag">鳳梨</span>
+          <span class="flavor-tag">水果軟糖</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$540</span>
+        <span class="price-hangtag">$380</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+
+    <div class="bean-item">
+      <div class="bean-number">03</div>
+      <div class="bean-info">
+        <div class="bean-name">班吉麻吉 歌姬藝伎 晚收甜酒 G1</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Ethiopia · Bench Maji</span>
+          <span class="bean-process">日曬</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">深色莓果</span>
+          <span class="flavor-tag">成熟的梨</span>
+          <span class="flavor-tag">桃子</span>
+          <span class="flavor-tag">甜杏仁</span>
+          <span class="flavor-tag">香氣飽滿</span>
+          <span class="flavor-tag">口感柔滑</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$540</span>
+        <span class="price-hangtag">$380</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+
+    <div class="bean-item">
+      <div class="bean-number">04</div>
+      <div class="bean-info">
+        <div class="bean-name">班吉馬奇 果里藝伎 夏娃 G1</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Ethiopia · Bench Maji</span>
+          <span class="bean-process washed">水洗</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">茉莉花香</span>
+          <span class="flavor-tag">香水檸檬</span>
+          <span class="flavor-tag">藍莓</span>
+          <span class="flavor-tag">尾韻清甜</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$480</span>
+        <span class="price-hangtag">$360</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Ethiopia Natural & Anaerobic -->
+  <div class="section-header">
+    <span class="section-flag">🇪🇹</span>
+    <div>
+      <div class="section-title">衣索比亞產區 — 日曬 & 特殊處理</div>
+      <div class="section-subtitle">Ethiopia · Natural &amp; Special Process</div>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="bean-list">
+    <div class="bean-item">
+      <div class="bean-number">05</div>
+      <div class="bean-info">
+        <div class="bean-name">谷吉 烏拉嘎鎮 金煌蜜露 168小時厭氧日曬 G1</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Ethiopia · Guji</span>
+          <span class="bean-process anaerobic">厭氧日曬</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">芒果香氣</span>
+          <span class="flavor-tag">香氣豐富飽滿</span>
+          <span class="flavor-tag">龍眼與芒果汁</span>
+          <span class="flavor-tag">口感多汁甜膩</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$480</span>
+        <span class="price-hangtag">$360</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+
+    <div class="bean-item">
+      <div class="bean-number">06</div>
+      <div class="bean-info">
+        <div class="bean-name">谷吉 布穀阿貝兒 花蝶谷 G1</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Ethiopia · Guji</span>
+          <span class="bean-process">日曬</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">草莓</span>
+          <span class="flavor-tag">藍莓</span>
+          <span class="flavor-tag">水蜜桃</span>
+          <span class="flavor-tag">荔枝</span>
+          <span class="flavor-tag">花香</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$480</span>
+        <span class="price-hangtag">$360</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+
+    <div class="bean-item">
+      <div class="bean-number">07</div>
+      <div class="bean-info">
+        <div class="bean-name">谷吉 克恰 圖瑞波娃</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Ethiopia · Guji</span>
+          <span class="bean-process yeast">酵母日曬</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">可爾必思</span>
+          <span class="flavor-tag">櫻桃</span>
+          <span class="flavor-tag">莓果</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$470</span>
+        <span class="price-hangtag">$360</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Ethiopia Washed -->
+  <div class="section-header">
+    <span class="section-flag">🇪🇹</span>
+    <div>
+      <div class="section-title">衣索比亞產區 — 水洗系列</div>
+      <div class="section-subtitle">Ethiopia · Washed Process</div>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="bean-list">
+    <div class="bean-item">
+      <div class="bean-number">08</div>
+      <div class="bean-info">
+        <div class="bean-name">耶加雪菲 潔蒂普洽洽蕾 G1</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Ethiopia · Yirgacheffe</span>
+          <span class="bean-process washed">水洗</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">橙花乾香</span>
+          <span class="flavor-tag">砂糖橘</span>
+          <span class="flavor-tag">酸甜平衡</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$440</span>
+        <span class="price-hangtag">$350</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+
+    <div class="bean-item">
+      <div class="bean-number">09</div>
+      <div class="bean-info">
+        <div class="bean-name">谷吉 罕貝拉</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Ethiopia · Guji Hambela</span>
+          <span class="bean-process washed">水洗</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">佛手柑</span>
+          <span class="flavor-tag">糖漬橙片</span>
+          <span class="flavor-tag">格雷伯爵茶</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$420</span>
+        <span class="price-hangtag">$330</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Kenya & Brazil -->
+  <div class="section-header">
+    <span class="section-flag">🇰🇪🇧🇷</span>
+    <div>
+      <div class="section-title">肯亞 & 巴西產區</div>
+      <div class="section-subtitle">Kenya &amp; Brazil</div>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="bean-list">
+    <div class="bean-item">
+      <div class="bean-number">10</div>
+      <div class="bean-info">
+        <div class="bean-name">祈安布 凱瑞嘉</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Kenya · Kirinyaga</span>
+          <span class="bean-process washed">水洗</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">蜜柚</span>
+          <span class="flavor-tag">青蘋果</span>
+          <span class="flavor-tag">洋甘菊</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$440</span>
+        <span class="price-hangtag">$350</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+
+    <div class="bean-item">
+      <div class="bean-number">11</div>
+      <div class="bean-info">
+        <div class="bean-name">巴烏莊園 維多莉亞農場 聖塔羅莎</div>
+        <div class="bean-meta">
+          <span class="bean-origin">Brazil · Minas Gerais</span>
+          <span class="bean-process">日曬</span>
+        </div>
+        <div class="bean-flavor-tags">
+          <span class="flavor-tag">核果</span>
+          <span class="flavor-tag">堅果</span>
+          <span class="flavor-tag">榛果</span>
+          <span class="flavor-tag">奶油</span>
+        </div>
+      </div>
+      <div class="bean-price">
+        <span class="price-half">$390</span>
+        <span class="price-hangtag">$290</span>
+        <span class="price-label">半磅 / 耳掛</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-brand">S A F E  C O F F E E</div>
+    <div class="footer-note">
+      所有咖啡豆均現烘出貨 · 建議於烘焙後 7–21 天內享用<br>
+      All beans roasted to order · Best enjoyed 7–21 days after roast date
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
