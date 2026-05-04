@@ -273,35 +273,53 @@
   }
 
   .bean-price {
-    text-align: right;
-    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
     padding-top: 2px;
+    min-width: 145px;
   }
 
-  .price-half {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--red);
-    display: block;
-    line-height: 1;
+  .price-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-radius: 4px;
+    padding: 7px 12px;
+    width: 100%;
   }
 
-  .price-hangtag {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--green-light);
-    display: block;
-    margin-top: 4px;
+  .price-block.roasted {
+    background: var(--red);
   }
 
-  .price-label {
+  .price-block.hangtag {
+    background: var(--green);
+  }
+
+  .price-type-label {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
-    color: #aaa;
     letter-spacing: 0.1em;
-    display: block;
-    margin-top: 2px;
+    color: rgba(255,255,255,0.85);
+    white-space: nowrap;
+  }
+
+  .price-value {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .price-block.roasted .price-value {
+    font-size: 20px;
+  }
+
+  .price-block.hangtag .price-value {
+    font-size: 18px;
   }
 
   /* Divider between sections */
@@ -357,8 +375,7 @@
 
   <!-- Price Legend -->
   <div class="price-legend">
-    <div class="price-legend-item">熟豆 半磅 (227g)</div>
-    <div class="price-legend-item">耳掛包 8包入</div>
+    <div class="price-legend-item">價格說明 &nbsp;|&nbsp; 🟤 半磅熟豆 (227g) &nbsp;·&nbsp; 🟢 耳掛包 8包入</div>
   </div>
 
   <!-- Section 1: Ethiopia Geisha / High-end -->
@@ -390,10 +407,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$560</span>
-        <span class="price-hangtag">$390</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$560</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$390</span>
+          </div>
+        </div>
     </div>
 
     <div class="bean-item">
@@ -414,10 +436,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$540</span>
-        <span class="price-hangtag">$380</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$540</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$380</span>
+          </div>
+        </div>
     </div>
 
     <div class="bean-item">
@@ -438,10 +465,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$540</span>
-        <span class="price-hangtag">$380</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$540</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$380</span>
+          </div>
+        </div>
     </div>
 
     <div class="bean-item">
@@ -460,10 +492,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$480</span>
-        <span class="price-hangtag">$360</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$480</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$360</span>
+          </div>
+        </div>
     </div>
   </div>
 
@@ -494,10 +531,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$480</span>
-        <span class="price-hangtag">$360</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$480</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$360</span>
+          </div>
+        </div>
     </div>
 
     <div class="bean-item">
@@ -517,10 +559,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$480</span>
-        <span class="price-hangtag">$360</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$480</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$360</span>
+          </div>
+        </div>
     </div>
 
     <div class="bean-item">
@@ -538,10 +585,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$470</span>
-        <span class="price-hangtag">$360</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$470</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$360</span>
+          </div>
+        </div>
     </div>
   </div>
 
@@ -571,10 +623,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$440</span>
-        <span class="price-hangtag">$350</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$440</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$350</span>
+          </div>
+        </div>
     </div>
 
     <div class="bean-item">
@@ -592,10 +649,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$420</span>
-        <span class="price-hangtag">$330</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$420</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$330</span>
+          </div>
+        </div>
     </div>
   </div>
 
@@ -625,10 +687,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$440</span>
-        <span class="price-hangtag">$350</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$440</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$350</span>
+          </div>
+        </div>
     </div>
 
     <div class="bean-item">
@@ -647,10 +714,15 @@
         </div>
       </div>
       <div class="bean-price">
-        <span class="price-half">$390</span>
-        <span class="price-hangtag">$290</span>
-        <span class="price-label">半磅 / 耳掛</span>
-      </div>
+          <div class="price-block roasted">
+            <span class="price-type-label">半磅熟豆 227g</span>
+            <span class="price-value">$390</span>
+          </div>
+          <div class="price-block hangtag">
+            <span class="price-type-label">耳掛包 8包入</span>
+            <span class="price-value">$290</span>
+          </div>
+        </div>
     </div>
   </div>
 
